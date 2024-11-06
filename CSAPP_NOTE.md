@@ -2,5 +2,5 @@
 
 ## Turning C into Object Code
 
-![6021b38ea875a254c34dd4089bea1bbf](/Users/alias/Documents/Markdown/typora_img/6021b38ea875a254c34dd4089bea1bbf.png)
+![6021b38ea875a254c34dd4089bea1bbf](./typora_img/6021b38ea875a254c34dd4089bea1bbf.png)
 
