@@ -2,7 +2,7 @@
 
 ## 创建版本库
 
-``` 
+``` bash
 $ git init
 Initialized empty Git repository in /Users/michael/learngit/.git/
 ```
@@ -13,22 +13,32 @@ Initialized empty Git repository in /Users/michael/learngit/.git/
 
 首先添加文件到仓库：
 
-``` 
+``` bash
 $ git add readme.txt
 ```
 
 然后使用git commit告诉git把文件提交到仓库
 
-``` 
+``` bash
 $ git commit -m "wrote a readme file"
 [master (root-commit) eaadf4e] wrote a readme file
  1 file changed, 2 insertions(+)
  create mode 100644 readme.txt
 ```
 
+如果要一次添加所有修改，可以用
+
+``` bash
+$ git add .
+```
+
+
+
+
+
 ## 查看文件修改结果
 
-``` 
+``` bash
 $ git status
 On branch master
 Changes not staged for commit:
@@ -42,7 +52,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 修改的具体内容可以用git dff看
 
-``` 
+``` bash
 $ git diff readme.txt 
 diff --git a/readme.txt b/readme.txt
 index 46d49bf..9247db6 100644
@@ -58,7 +68,7 @@ index 46d49bf..9247db6 100644
 
 git log
 
-``` 
+``` bash
 $ git log
 commit 1094adb7b9b3807259d8cb349e7df1d4d6477073 (HEAD -> master)
 Author: Michael Liao <askxuefeng@gmail.com>
@@ -87,7 +97,7 @@ Date:   Fri May 18 20:59:18 2018 +0800
 
 现在，我们要把当前版本`append GPL`回退到上一个版本`add distributed`，就可以使用`git reset`命令：
 
-``` 
+``` bash
 $ git reset --hard HEAD^
 HEAD is now at e475afc add distributed
 ```
@@ -98,7 +108,7 @@ HEAD is now at e475afc add distributed
 
 在Git中，总是有后悔药可以吃的。当你用`$ git reset --hard HEAD^`回退到`add distributed`版本时，再想恢复到`append GPL`，就必须找到`append GPL`的commit id。Git提供了一个命令`git reflog`用来记录你的每一次命令：
 
-``` 
+``` bash
 $ git reflog
 e475afc HEAD@{1}: reset: moving to HEAD^
 1094adb (HEAD -> master) HEAD@{2}: commit: append GPL
@@ -110,7 +120,7 @@ eaadf4e HEAD@{4}: commit (initial): wrote a readme file
 
 ## GIT撤销修改
 
-``` 
+``` bash
 $ git checkout -- readme.txt
 ```
 
