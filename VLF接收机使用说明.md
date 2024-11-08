@@ -6,7 +6,7 @@
 
 接收机外壳上的品字插座需要接到**12V**电源上，注意是**12V**，不是**220V**
 
-将两路磁天线和北斗的天线接至机箱相应的SMA接口，机箱USB口接外置的硬盘柜，注意硬盘盒也需要12V供电
+将两路磁天线和北斗的天线接至机箱相应的SMA接口，机箱USB口接外置的硬盘柜，注意硬盘盒也需要**12V**供电
 
 ### 1.2 网络连接
 
@@ -50,5 +50,48 @@
 
 
 
-## 4 常用操作
+## 4 数据存储
+
+### 4.1 数据存储格式
+
+
+
+
+
+
+
+## 5 常用操作
+
+主要是使用Putty的时候会用到的一些操作
+
+### 5.1 磁盘挂载
+
+
+
+
+
+### 5.2 Supervisor进程管理
+
+接收机使用Supervisor来实现开机自启动以及进程的管理，要查看当前进程状态，使用指令
+
+``` bash
+xilinx@pynq:~$ sudo supervisorctl status
+daq                              RUNNING   pid 1819, uptime 17:34:07
+```
+
+daq就是我们正在执行的数据采集进程，要想关闭进程，可以使用指令
+
+``` bash
+xilinx@pynq:~$ sudo supervisorctl stop daq
+daq: stopped
+xilinx@pynq:~$ sudo supervisorctl status
+daq                              STOPPED   Nov 07 06:37 AM
+```
+
+再启动daq，可以使用指令
+
+``` bash
+xilinx@pynq:~$ sudo supervisorctl start daq
+daq: started
+```
 
