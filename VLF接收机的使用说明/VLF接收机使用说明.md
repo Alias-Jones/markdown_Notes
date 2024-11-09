@@ -152,6 +152,16 @@ Device     Start         End     Sectors  Size Type
 
 这个/dev/sda1就是接上去的磁盘，可以根据大小判断一下
 
+挂载磁盘的指令
+
+``` bash
+sudo mount /dev/sda1 /home/xilinx/disk
+```
+
+
+
+
+
 接着，如果是新磁盘，需要先格式化一下，使用指令
 
 ``` bash
