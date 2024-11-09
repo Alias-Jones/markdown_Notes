@@ -140,23 +140,44 @@ ch2 = data(header_length + 2:2:end);
 首先在未接硬盘之前，用fdisk -l指令查看一下当前设备的硬盘情况
 
 ``` bash
-fdisk -l
+sudo fdisk -l
 ```
 
 接上硬盘之后，再fdisk -l查看一下
 
 ``` bash
+Device     Start         End     Sectors  Size Type
+/dev/sda1   2048 31251759070 31251757023 14.6T Linux filesystem
 ```
 
-这个/dev/sda1就是接上去的磁盘
+这个/dev/sda1就是接上去的磁盘，可以根据大小判断一下
 
 接着，如果是新磁盘，需要先格式化一下，使用指令
 
 ``` bash
-mkfs.ext4 /dev/sda1
+sudo mkfs.ext4 /dev/sda1
 ```
 
+将磁盘格式化为ext4格式
 
+
+
+#### 5.1.1 查看当前磁盘的挂载情况
+
+``` bash
+xilinx@pynq:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        29G  6.3G   22G  23% /
+devtmpfs        438M     0  438M   0% /dev
+tmpfs           502M     0  502M   0% /dev/shm
+tmpfs           502M  1.6M  501M   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           502M     0  502M   0% /sys/fs/cgroup
+tmpfs           101M     0  101M   0% /run/user/1000
+/dev/sda1        15T   19M   14T   1% /home/xilinx/disk
+```
+
+可以看到当前/dev/sda1已经挂载到了/home/xilinx/disk下
 
 
 
@@ -184,4 +205,6 @@ daq                              STOPPED   Nov 07 06:37 AM
 xilinx@pynq:~$ sudo supervisorctl start daq
 daq: started
 ```
+
+开机自启动的脚本在/home/xilinx/pynq_dma文件夹下的start.sh里
 
