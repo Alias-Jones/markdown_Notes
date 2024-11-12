@@ -37,8 +37,6 @@ PS C:\Users\43601> ping pynq
 
 
 
-
-
 ## 2 通过SSH连接
 
 打开**Putty**，使用**SSH**进行连接，**Host Name**填写**pynq**，如图所示：
@@ -152,15 +150,11 @@ Windows IP 配置
 | 0x18 | 配置采样率             | 1MSPS/(N+1)；以0x01为例，可以配置采样率为500k，默认为0x04，200k； |
 | 0x1c | 配置ADC和PPS的数据来源 | 高四位为55aa的时候使用内部ADC数据，第四位为5aa5的时候使用内部PPS数据； |
 
-
-
 ### 4.2 设备本地数据保存
 
 设备会在~/disk/disk1和~/disk/disk2下分别保存两份相同的文件，并且每天新建一个文件夹保存当天的数据
 
 **设备保存数据的时间上限为180天，超过180天会将更早的数据删除**
-
-
 
 ### 4.3 数据格式
 
@@ -227,8 +221,6 @@ sudo mkfs.ext4 /dev/sda1
 sudo mount /dev/sda1 /home/xilinx/disk
 ```
 
-
-
 #### 5.1.1 查看当前磁盘的挂载情况
 
 ``` bash
@@ -246,8 +238,6 @@ tmpfs           101M     0  101M   0% /run/user/1000
 ```
 
 可以看到当前/dev/sda1和/dev/sdb1已经分别挂载到了~/disk/disk1和~/disk/disk2下
-
-
 
 ### 5.2 Supervisor进程管理
 
@@ -289,3 +279,10 @@ sudo pkill python3
 ```
 
 之后就可以手动运行driver.py来进行代码的调试
+
+### 5.4 不挂断进程的启动方式
+
+``` bash
+nohup sudo python3 -u driver.py > /home/xilinx/disk/test.log 2>&1 &
+```
+
