@@ -286,3 +286,34 @@ sudo pkill python3
 nohup sudo python3 -u driver.py > /home/xilinx/disk/test.log 2>&1 &
 ```
 
+### 5.5 手动更改设备IP
+
+如果没有自动分配192.168.2.99，可以禁用DHCP
+
+打开/etc/network/interfaces.d/eth0，修改文件
+
+``` bash
+sudo vim /etc/network/interfaces.d/eth0
+```
+
+里面是
+
+``` bash
+auto eth0
+iface eth0 inet dhcp
+
+auto eth0:1
+iface eth0:1 inet static
+address 192.168.2.99
+netmask 255.255.255.0
+```
+
+改成
+
+``` bash
+auto eth0
+iface eth0 inet static
+address 192.168.2.99
+netmask 255.255.255.0
+```
+
